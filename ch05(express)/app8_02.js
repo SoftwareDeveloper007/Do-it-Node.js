@@ -26,13 +26,11 @@ router.route('/process/login/:name').post(function(req, res){
     res.end();
 });
 
+app.use('/', router);
+
 app.all('*', function(req, res){
     res.status(404).send('<h1>404 Not Found</h1>');
 });
-
-app.use('/', router);
-
-
 
 
 var server = http.createServer(app).listen(app.get('port'), function(){
