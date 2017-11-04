@@ -49,6 +49,40 @@ var upload = multer({
 
 var router = express.Router();
 
+router.route('/process/photo').post(upload.array('photo', 1), function (req, res) {
+    console.log('/process/photo : Routing Function is called');
+    var files = req.files;
+    console.log('==== Uploaded File ====');
+    if(files.length > 0) {
+        console.dir(files[0]);
+    }
+    else {
+        console.log('No File');
+    }
+
+    var originalname;
+    var filename;
+    var mimetype;
+    var size;
+
+    if(Array.isArray(files)){
+        for(var i = 0; i < files.length; i++){
+            originalname = files[i].originalname;
+            filename = files[i].filename;
+            mimetype = files[i].mimetype;
+            size = files[i].size;
+        }
+    }
+
+    res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+    res.write("<h1>File Upload Success</h1>");
+    res.write("<p>Original File: " + originalname + "</p>");
+    res.write("<p>Saved File: " + filename + "</p>");
+    res.end();
+
+
+});
+
 router.route('/process/product').get(function (req, res) {
     console.log('/process/product : Routing Function called');
 
