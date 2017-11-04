@@ -31,6 +31,53 @@ router.route('/process/product').get(function(req, res){
     }
 })
 
+router.route('/process/login').post(function(req, res){
+   console.log('/process/login : Routing Function called!');
+    var paramId = req.body.id || req.query.id;  
+    var paramPassword = req.body.password || req.query.password;
+    console.log('Request Parameter: ' + paramId + ', ' + paramPassword);
+    
+    if (req.session.user){
+        console.log('Already logged in');
+        res.redirect('/public/product.html');
+    }
+    else {
+        req.session.user = {
+            id: paramId,
+            name: 'Girls Age',
+            authorized: true            
+        };
+        
+        res.writeHead(200, {"Content-Type": "text/html; charset=utf8"})
+        res.write('<h1>Logged in successfully</h1>');
+        res.write('<p>Id :' + paramId + '</p>');
+        res.write('<br><br><a href="/process/product">Move to product page</a>');
+        res.end();
+    }
+});
+
+router.route('/process/logout').get(function(req, res){
+   console.log('/process/logout : Routing Function is called');
+    
+    if (req.session.user){
+        console.log('Log out');
+        req.session.destroy(function(err){
+            if(err){
+                console.log('Error happened when session is deleted');
+                return;
+            }
+            
+            console.log('Session is deleted successfully');
+            res.redirect('/public/login2.html');
+            
+        });
+    }
+    else {
+        console.log('Not logged in');
+        res.redirect('/public/login2.html');
+    }
+});
+
 
 router.route('/process/setUserCookie').get(function(req, res){
     console.log('/process/setUserCookie : Routing function called');
