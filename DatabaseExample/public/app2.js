@@ -81,6 +81,14 @@ router.route('/process/login').post(function (req, res) {
     }
 });
 
+router.route('/process/adduser').post(function (req, res) {
+   console.log('/process/adduser : Routing function is called.');
+
+   var paramId = req.body.id || req.query.id;
+   var paramPassword = req.body.password || req.query.password;
+   var paramName = req.body.name || req.query.name; 
+});
+
 app.use('/', router);
 
 var authUser = function (db, id, password, callback) {
@@ -100,6 +108,27 @@ var authUser = function (db, id, password, callback) {
             callback(null, null);
         }
     });
+};
+
+var addUser = function (db, id, password, name, callback) {
+  console.log('addUser is called :' + id + ', ' + password + ', ' + name);
+
+  var users = db.collection('users');
+  users.insertMany([{"id": id, "password": password, "name": name}], function (err, result) {
+      if(err){
+          callback(err, null);
+          return;
+      }
+
+      if(result.insertedCount > 0){
+          console.log("User is added : " + result.insertedCount);
+          callback(null, result);
+      }
+      else {
+          console.log("No added record.");
+          callback(null, null);
+      }
+  });
 };
 
 // 404 Error page
