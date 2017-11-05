@@ -46,7 +46,7 @@ app.use(expressSession({
 var router = express.Router();
 
 router.route('/process/login').post(function (req, res) {
-    console.log('/process/login : Routing function is called');
+    console.log('/process/login : Routing function is called.');
     var paramId = req.body.id || req.query.id;
     var paramPassword = req.body.password || req.query.password;
     console.log("Request parameter : " + paramId + ', ' + paramPassword);
@@ -73,7 +73,7 @@ router.route('/process/login').post(function (req, res) {
             else {
                 console.log("Error happened.");
                 res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
-                res.write("<h1>Can't not visit user database</h1>");
+                res.write("<h1>Can't visit user database</h1>");
                 res.end();
                 return;
             }
