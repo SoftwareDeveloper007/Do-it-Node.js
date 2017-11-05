@@ -166,21 +166,16 @@ var authUser = function (db, id, password, callback) {
 var addUser = function (db, id, password, name, callback) {
     console.log('addUser is called :' + id + ', ' + password + ', ' + name);
 
-    var users = db.collection('users');
-    users.insertMany([{"id": id, "password": password, "name": name}], function (err, result) {
+    var user = new UserModel({"id": id, "password": password, "name": name});
+    user.save(function (err) {
         if(err){
-            callback(err, null);
+            call(err, null);
             return;
         }
 
-        if(result.insertedCount > 0){
-            console.log("User is added : " + result.insertedCount);
-            callback(null, result);
-        }
-        else {
-            console.log("No added record.");
-            callback(null, null);
-        }
+        console.log("User data is added.");
+        callback(null, user);
+
     });
 };
 
