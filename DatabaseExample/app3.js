@@ -145,12 +145,13 @@ app.use('/', router);
 
 var authUser = function (db, id, password, callback) {
     console.log('authUser is called :' + id + ', ' + password);
-    var users = db.collection('users');
-    users.find({"id": id, "password": password}).toArray(function (err, docs) {
+
+    UserModel.find({"id": id, "password": password}, function (err, docs) {
         if(err){
             callback(err, null);
             return;
         }
+
         if(docs.length > 0){
             console.log("Identified User is found");
             callback(null, docs);
