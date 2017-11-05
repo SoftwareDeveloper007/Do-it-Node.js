@@ -10,7 +10,7 @@ var expressSession = require('express-session');
 var expressErrorHandler = require('express-error-handler');
 
 // mongoose Module
-var MongoClient = require('mongoose');
+var mongoose = require('mongoose');
 
 var database;
 var UserSchema;
