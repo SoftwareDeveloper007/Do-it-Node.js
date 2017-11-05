@@ -86,7 +86,44 @@ router.route('/process/adduser').post(function (req, res) {
 
    var paramId = req.body.id || req.query.id;
    var paramPassword = req.body.password || req.query.password;
-   var paramName = req.body.name || req.query.name; 
+   var paramName = req.body.name || req.query.name;
+
+   console.log('Request Parameter : ' + paramId + ', ' + paramPassword + ', ' + paramName);
+
+   if (database){
+       addUser(database, paramId, paramPassword, paramName, function (err, result) {
+           if(err){
+               console.log("Error happened.");
+               res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+               res.write('<h1>Error happened</h1>');
+               res.end();
+               return;
+           }
+
+           if(result){
+               console.dir(result);
+               res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+               res.write('<h1>User addition is succeeded</h1>');
+               res.write('<div><p>User : ' + paramName + '</p></div>')
+               res.end();
+               return;
+           }
+           else {
+               console.log("Error happened.");
+               res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+               res.write("<h1>User is not added.</h1>");
+               res.end();
+               return;
+           }
+       });
+   }
+   else {
+       console.log("Error happened.");
+       res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+       res.write("<h1>Can't be connected to database</h1>");
+       res.end();
+       return;
+   }
 });
 
 app.use('/', router);
