@@ -37,8 +37,8 @@
       <file leaf-file-name="app4.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app4.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="46" column="42" lean-forward="false" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+            <state relative-caret-position="471">
+              <caret line="186" column="33" lean-forward="false" selection-start-line="186" selection-start-column="33" selection-end-line="186" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -143,12 +143,12 @@
       <option name="presentableId" value="Default" />
       <updated>1509829256315</updated>
       <workItem from="1509829262306" duration="13593000" />
-      <workItem from="1509933539532" duration="1477000" />
+      <workItem from="1509933539532" duration="1956000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15070000" />
+    <option name="totallyTimeSpent" value="15549000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
@@ -218,6 +218,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-867">
           <caret line="12" column="49" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="183" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -225,6 +226,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -232,6 +234,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -253,8 +256,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app4.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="46" column="42" lean-forward="false" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+        <state relative-caret-position="471">
+          <caret line="186" column="33" lean-forward="false" selection-start-line="186" selection-start-column="33" selection-end-line="186" selection-end-column="33" />
           <folding />
         </state>
       </provider>

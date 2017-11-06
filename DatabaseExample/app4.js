@@ -40,6 +40,12 @@ function connectDB() {
            return this.find({id: id}, callback);
         });
 
+        /*
+        UserSchema.statics.findById = function (id, callback) {
+            return this.find({id: id}, callback);
+        };
+        */
+
         UserSchema.static('findAll', function (callback) {
             return this.find({}, callback);
         });
@@ -157,6 +163,30 @@ app.use('/', router);
 
 var authUser = function (db, id, password, callback) {
     console.log('authUser is called :' + id + ', ' + password);
+
+    UserModel.findById(id, function () {
+        if(err){
+            callback(err, null);
+            return;
+        }
+
+        console.log('Search result with id %s.');
+
+        if(results.length > 0){
+            if(results[0]._doc.password === password) {
+                console.log('Password is correct.');
+                callback(null, results);
+            }
+            else{
+                console.log('Password is incorrect.');
+                callback(null, null);
+            }
+        }
+        else{
+            console.log('No identified user.');
+            callback(null, null);
+        }
+    });
 
     UserModel.find({"id": id, "password": password}, function (err, docs) {
         if(err){
