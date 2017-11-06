@@ -159,6 +159,45 @@ router.route('/process/adduser').post(function (req, res) {
     }
 });
 
+router.route('/process/listuser').post(function (req, res) {
+    console.log('/process/listuser : Routing function is called.');
+
+    if(database){
+        UserModel.findAll(function (err, result) {
+            if(err){
+                console.log('Error happened.');
+                res.writeHead(200, {'Content-Type': "text/html; charset=utf8"});
+                res.write('<h1>Error happened</h1>');
+                res.end();
+                return;
+            }
+
+            if(result){
+                console.dir(results);
+                res.writeHead(200, {'Content-Type': "text/html; charset=utf8"});
+                res.write("<h3>User List</h3>");
+                res.write("<div><ul>");
+
+                for (var i=0; i<results.length; i++){
+                    var curId = results[i]._doc.id;
+                    var curName = results[i]._doc.name;
+                    res.write("   <li>#" + i + " -> " + curId + ', ' + curName + "</li>");
+                }
+
+                res.write("</ul></div>");
+                res.end();
+
+            }
+            else{
+                console.log("Error happened.");
+                res.writeHead(200, {'Content-Type': "text/html; charset=utf8"});
+                res.write('<h1>No Visitors.</h1>');
+                res.end();
+            }
+        });
+    }
+});
+
 app.use('/', router);
 
 var authUser = function (db, id, password, callback) {
