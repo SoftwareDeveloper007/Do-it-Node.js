@@ -28,8 +28,8 @@ function connectDB() {
         UserSchema = mongoose.Schema({
             id: {type: String, required: true, unique: true},
             name: {type: String, index: 'hashed'},
-            password: {type: String, required: true}
-            age: {type: Number, 'default':-1};
+            password: {type: String, required: true},
+            age: {type: Number, 'default':-1},
             created_at: {type: Date, index: {unique: false}, 'default': Date.now()},
             updated_at: {type: Date, index: {unique: false}, 'default': Date.now()}
         });
@@ -203,7 +203,7 @@ app.use('/', router);
 var authUser = function (db, id, password, callback) {
     console.log('authUser is called :' + id + ', ' + password);
 
-    UserModel.findById(id, function () {
+    UserModel.findById(id, function (err, results) {
         if(err){
             callback(err, null);
             return;

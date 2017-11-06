@@ -27,8 +27,8 @@
       <file leaf-file-name="app3.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="146" column="48" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="194" selection-end-column="3" />
+            <state relative-caret-position="474">
+              <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -37,8 +37,8 @@
       <file leaf-file-name="app4.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app4.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="193" column="43" lean-forward="false" selection-start-line="193" selection-start-column="43" selection-end-line="193" selection-end-column="43" />
+            <state relative-caret-position="165">
+              <caret line="205" column="49" lean-forward="false" selection-start-line="205" selection-start-column="49" selection-end-line="205" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -78,6 +78,7 @@
       <find>bodyPa</find>
       <find>Request parameter</find>
       <find>usermodel</find>
+      <find>adduser</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -88,8 +89,8 @@
         <option value="$PROJECT_DIR$/public/adduser.html" />
         <option value="$PROJECT_DIR$/app3.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/app4.js" />
         <option value="$PROJECT_DIR$/public/listuser.html" />
+        <option value="$PROJECT_DIR$/app4.js" />
       </list>
     </option>
   </component>
@@ -173,12 +174,12 @@
       <option name="presentableId" value="Default" />
       <updated>1509829256315</updated>
       <workItem from="1509829262306" duration="13593000" />
-      <workItem from="1509933539532" duration="2548000" />
+      <workItem from="1509933539532" duration="4682000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16141000" />
+    <option name="totallyTimeSpent" value="18275000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
@@ -267,14 +268,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="146" column="48" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="194" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/adduser.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -291,10 +284,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app4.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="193" column="43" lean-forward="false" selection-start-line="193" selection-start-column="43" selection-end-line="193" selection-end-column="43" />
+        <state relative-caret-position="165">
+          <caret line="205" column="49" lean-forward="false" selection-start-line="205" selection-start-column="49" selection-end-line="205" selection-end-column="49" />
           <folding />
         </state>
       </provider>
