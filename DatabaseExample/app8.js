@@ -37,6 +37,42 @@ app.use(expressSession({
 
 var router = express.Router();
 
+router.route('/process/adduser').post(function (req, res) {
+   console.log('/process/adduser : Routing function is called.');
+
+   var paramId = req.body.id || req.query.id;
+   var paramPassword = req.body.password || req.query.password;
+   var paramName = req.body.name || req.query.name;
+   var paramAge = req.body.age || req.query.age;
+
+   console.log('Request parameter : ' + paramId + ', ' + paramPassword + ', ' + paramName + ', ' + paramAge);
+
+   addUser(paramId, paramName, paramPassword, paramAge, function (err, addedUser) {
+       if(err){
+           console.log("Error happened.");
+           res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+           res.write('<h1>Error happened</h1>');
+           res.end();
+           return;
+       }
+
+       if(addedUser){
+           console.dir(addedUser);
+           res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+           res.write('<h1>User is added successfully</h1>');
+           res.end();
+           return;
+       }
+       else{
+           console.log("Error happened.");
+           res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+           res.write("<h1>Failed to add user.</h1>");
+           res.end();
+           return;
+       }
+   });
+});
+
 router.route('/process/login').post(function (req, res) {
     console.log('/process/login : Routing function is called.');
     var paramId = req.body.id || req.query.id;
@@ -135,5 +171,4 @@ app.use(errorHandler);
 
 var server = http.createServer(app).listen(app.get('port'), function () {
     console.log('Express Web Server : ' + app.get('port'));
-    connectDB();
 });
