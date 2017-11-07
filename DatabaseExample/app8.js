@@ -79,39 +79,39 @@ router.route('/process/login').post(function (req, res) {
     var paramPassword = req.body.password || req.query.password;
     console.log("Request parameter : " + paramId + ', ' + paramPassword);
 
-    if(database){
-        authUser(database, paramId, paramPassword, function (err, docs) {
-            if(err){
-                console.log("Error happened.");
-                res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
-                res.write('<h1>Error happened</h1>');
-                res.end();
-                return;
-            }
 
-            if(docs){
-                console.dir(docs);
-                res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
-                res.write('<h1>User login is succeeded</h1>');
-                res.write('<div><p>User : ' + docs[0].name + '</p></div>')
-                res.write('<br><br><a href="/public/login.html">Log in again</a> ');
-                res.end();
-                return;
-            }
-            else {
-                console.log("Error happened.");
-                res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
-                res.write("<h1>Can't visit user database</h1>");
-                res.end();
-                return;
-            }
-        })
-    }
+    authUser(paramId, paramPassword, function (err, rows) {
+        if(err){
+            console.log("Error happened.");
+            res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+            res.write('<h1>Error happened</h1>');
+            res.end();
+            return;
+        }
+
+        if(rows){
+            console.dir(rows);
+            res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+            res.write('<h1>User login is succeeded</h1>');
+            res.write('<div><p>User : ' + rows[0].name + '</p></div>')
+            res.write('<br><br><a href="/public/login.html">Log in again</a> ');
+            res.end();
+            return;
+        }
+        else {
+            console.log("Error happened.");
+            res.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
+            res.write("<h1>Can't visit user database</h1>");
+            res.end();
+            return;
+        }
+    })
+
 });
 
 app.use('/', router);
 
-var addUser = function (id, name, age, password, callback) {
+var addUser = function (id, name, password, age, callback) {
     console.log('addUser is called.');
     pool.getConnection(function (err, conn) {
         if(err){
@@ -123,7 +123,7 @@ var addUser = function (id, name, age, password, callback) {
         }
         console.log("Database connection's thread id : " + conn.threadId);
 
-        var data = {id: id, name: name, age: age, password: password};
+        var data = {id: id, name: name, password: password, age: age};
         var exec = conn.query('insert into users set ?', data, function (err, result) {
             conn.release();
             console.log('Executed SQL : ' + exec.sql);
@@ -140,7 +140,7 @@ var addUser = function (id, name, age, password, callback) {
     });
 };
 
-var authUser = function (db, id, password, callback) {
+var authUser = function (id, password, callback) {
     console.log('authUser is called :' + id + ', ' + password);
 
     pool.getConnection(function (err, conn) {
