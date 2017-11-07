@@ -11,7 +11,7 @@ var expressErrorHandler = require('express-error-handler');
 
 var mysql = require('mysql');
 
-mysql.createPool({
+var pool = mysql.createPool({
    connectionLimit: 10,
    host: 'localhost',
    user: 'root',
