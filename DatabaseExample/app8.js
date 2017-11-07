@@ -11,6 +11,15 @@ var expressErrorHandler = require('express-error-handler');
 
 var mysql = require('mysql');
 
+mysql.createPool({
+   connectionLimit: 10,
+   host: 'localhost',
+   user: 'root',
+   password: 'passion1989',
+   database: 'test',
+   debug: false
+});
+
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
@@ -65,6 +74,26 @@ router.route('/process/login').post(function (req, res) {
 });
 
 app.use('/', router);
+
+var addUser = function (id, name, age, password, callback) {
+    console.log('addUser is called.');
+    pool.getConnection(function (err, conn) {
+        if(err){
+            if(conn){
+                conn.release();
+            }
+            callback(err, null);
+            return;
+        }
+        console.log("Database connection's thread id : " + conn.threadId);
+
+        var data = {id: id, name: name, age: age, password: password};
+        var exec = conn.query('insert into users set ?', data, function (err, result) {
+            
+
+        });
+    });
+};
 
 var authUser = function (db, id, password, callback) {
     console.log('authUser is called :' + id + ', ' + password);
