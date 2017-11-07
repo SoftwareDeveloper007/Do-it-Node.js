@@ -142,20 +142,37 @@ var addUser = function (id, name, age, password, callback) {
 
 var authUser = function (db, id, password, callback) {
     console.log('authUser is called :' + id + ', ' + password);
-    var users = db.collection('users');
-    users.find({"id": id, "password": password}).toArray(function (err, docs) {
-        if(err){
-            callback(err, null);
-            return;
-        }
-        if(docs.length > 0){
-            console.log("Identified User is found");
-            callback(null, docs);
-        }
-        else {
-            console.log("Identified User is not found.");
-            callback(null, null);
-        }
+
+    pool.getConnection(function (err, conn) {
+       if(err){
+           if(conn){
+               conn.release();
+           }
+
+           callback(err, null);
+       }
+
+       console.log("Database connection's thread id : " + conn.threadId);
+
+       var tablename = 'users';
+       var columns = ['id', 'name', 'age'];
+       var exec = conn.query("select ?? from ?? where id = ? and password = ?", [columns, tablename, id, password], function (err, rows) {
+          conn.release();
+          console.log('Executed SQL : ' + exec.sql);
+          if(err){
+              callback(err, null);
+              return;
+          }
+
+          if(rows.length > 0){
+              console.log("User is found.");
+              callback(null, rows);
+          }
+          else {
+              console.log("User is not found.");
+              callback(null, null);
+          }
+       });
     });
 };
 
