@@ -33,7 +33,7 @@ function connectDB() {
             id: {type: String, required: true, unique: true, 'default': ''},
             name: {type: String, index: 'hashed', 'default': ''},
             hashed_password: {type: String, required: true, 'default': ''},
-            salt: {type: String, required: true}
+            salt: {type: String, required: true},
             age: {type: Number, 'default':-1},
             created_at: {type: Date, index: {unique: false}, 'default': Date.now()},
             updated_at: {type: Date, index: {unique: false}, 'default': Date.now()}
@@ -87,7 +87,7 @@ function connectDB() {
             return this.find({}, callback);
         });
 
-        UserModel = mongoose.model('users2', UserSchema);
+        UserModel = mongoose.model('users3', UserSchema);
         console.log('UserModel is defined.')
     });
 
@@ -249,7 +249,11 @@ var authUser = function (db, id, password, callback) {
         console.log('Search result with id %s.');
 
         if(results.length > 0){
-            if(results[0]._doc.password === password) {
+            var user = new UserModel({id: id});
+
+            var authenticated = user.authenticate(password, results[0]._doc.salt, results[0]._doc.hashed_password);
+
+            if(authenticated) {
                 console.log('Password is correct.');
                 callback(null, results);
             }
