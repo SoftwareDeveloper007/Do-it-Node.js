@@ -89,7 +89,16 @@ var addUser = function (id, name, age, password, callback) {
 
         var data = {id: id, name: name, age: age, password: password};
         var exec = conn.query('insert into users set ?', data, function (err, result) {
-            
+            conn.release();
+            console.log('Executed SQL : ' + exec.sql);
+
+            if(err){
+                console.log('Error happened in SQL run.');
+                callback(err, null);
+                return;
+            }
+
+            callback(null, result);
 
         });
     });
