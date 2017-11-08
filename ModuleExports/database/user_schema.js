@@ -5,7 +5,6 @@ var Schema = {};
 Schema.createSchema = function (mongoose) {
 
     console.log('createSchema is called.');
-
     UserSchema = mongoose.Schema({
         id: {type: String, required: true, unique: true, 'default': ''},
         name: {type: String, index: 'hashed', 'default': ''},

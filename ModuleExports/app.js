@@ -9,10 +9,6 @@ var expressSession = require('express-session');
 // Error Handler Module
 var expressErrorHandler = require('express-error-handler');
 
-// Cryption Modul
-var crypto = require('crypto');
-
-
 // mongoose Module
 var mongoose = require('mongoose');
 
@@ -29,66 +25,8 @@ function connectDB() {
 
     database.on('open', function () {
         console.log("Connected to database : " + databaseUrl);
-        UserSchema = mongoose.Schema({
-            id: {type: String, required: true, unique: true, 'default': ''},
-            name: {type: String, index: 'hashed', 'default': ''},
-            hashed_password: {type: String, required: true, 'default': ''},
-            salt: {type: String, required: true},
-            age: {type: Number, 'default':-1},
-            created_at: {type: Date, index: {unique: false}, 'default': Date.now()},
-            updated_at: {type: Date, index: {unique: false}, 'default': Date.now()}
-        });
 
-        console.log('UserSchema is defined.');
-
-        UserSchema
-            .virtual('password')
-            .set(function (password) {
-                this.salt = this.makeSalt();
-                this.hashed_password = this.encryptPassword(password);
-                console.log('virtual password is saved : ' + this.hashed_password)
-            });
-
-        UserSchema.method('encryptPassword', function (plainText, inSalt) {
-            if(inSalt){
-                return crypto.createHmac('sha1', inSalt).update(plainText).digest('hex');
-            }
-            else{
-                return crypto.createHmac('sha1', this.salt).update(plainText).digest('hex');
-            }
-        });
-
-        UserSchema.method('makeSalt', function () {
-            return Math.round((new Date().valueOf()*Math.random())) + '';
-        });
-
-        UserSchema.method('authenticate', function (plainText, inSalt, hashed_password) {
-            if(inSalt){
-                console.log('authenticate is called.');
-                return this.encryptPassword(plainText, inSalt) === hashed_password;
-            }
-            else {
-                console.log('authenticate is called.');
-                return this.encryptPassword(plainText) === hashed_password;
-            }
-        })
-
-        UserSchema.static('findById', function (id, callback) {
-            return this.find({id: id}, callback);
-        });
-
-        /*
-        UserSchema.statics.findById = function (id, callback) {
-            return this.find({id: id}, callback);
-        };
-        */
-
-        UserSchema.static('findAll', function (callback) {
-            return this.find({}, callback);
-        });
-
-        UserModel = mongoose.model('users3', UserSchema);
-        console.log('UserModel is defined.')
+        createUserSchema(database);
     });
 
     database.on('disconnected', function () {
@@ -97,6 +35,15 @@ function connectDB() {
 
     database.on('error', console.error.bind(console, 'mongoose connection error.'));
 }
+
+function createUserSchema(database) {
+    database.UserSchema = require('./database/user_schema').createSchema(mongoose);
+
+    database.UserModel = mongoose.model('user3', database.UserSchema);
+
+    console.log('UserModel is defined.');
+}
+
 
 var app = express();
 
