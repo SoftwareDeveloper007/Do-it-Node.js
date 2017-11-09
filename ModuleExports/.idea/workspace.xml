@@ -13,10 +13,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.42908654">
+    <splitter split-orientation="horizontal" split-proportion="0.24038461">
       <split-first>
         <leaf>
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="224">
@@ -26,11 +26,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="app2.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="app2.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app2.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="389">
-                  <caret line="44" column="22" lean-forward="true" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+                <state relative-caret-position="748">
+                  <caret line="44" column="22" lean-forward="false" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="listuser.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/listuser.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="4" column="94" lean-forward="false" selection-start-line="4" selection-start-column="94" selection-end-line="4" selection-end-column="94" />
                   <folding />
                 </state>
               </provider>
@@ -70,11 +80,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/routes/user.js">
+          <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public/login.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="335">
-                  <caret line="139" column="30" lean-forward="false" selection-start-line="139" selection-start-column="30" selection-end-line="139" selection-end-column="30" />
+                <state relative-caret-position="304">
+                  <caret line="64" column="13" lean-forward="true" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
                   <folding />
                 </state>
               </provider>
@@ -88,9 +98,9 @@
     <findStrings>
       <find>connectdb</find>
       <find>connectDB</find>
-      <find>login</find>
-      <find>router</find>
       <find>38:25</find>
+      <find>router</find>
+      <find>login</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -113,9 +123,11 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/routes/route_loader.js" />
-        <option value="$PROJECT_DIR$/app2.js" />
         <option value="$PROJECT_DIR$/database/database_loader.js" />
         <option value="$PROJECT_DIR$/routes/user.js" />
+        <option value="$PROJECT_DIR$/app2.js" />
+        <option value="$PROJECT_DIR$/public/listuser.html" />
+        <option value="$PROJECT_DIR$/public/login.html" />
       </list>
     </option>
   </component>
@@ -160,7 +172,7 @@
             <path>
               <item name="ModuleExports" type="b2602c69:ProjectViewProjectNode" />
               <item name="ModuleExports" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ModuleExports" type="b2602c69:ProjectViewProjectNode" />
@@ -225,12 +237,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510163880116</updated>
-      <workItem from="1510163885253" duration="9522000" />
+      <workItem from="1510163885253" duration="11846000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9522000" />
+    <option name="totallyTimeSpent" value="11846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -400,14 +412,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="79" column="17" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="92" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/database_loader.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -424,10 +428,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../DatabaseExample/public/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="15" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="21" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="44" column="22" lean-forward="true" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+        <state relative-caret-position="748">
+          <caret line="44" column="22" lean-forward="false" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/author.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/listuser.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="94" lean-forward="false" selection-start-line="4" selection-start-column="94" selection-end-line="4" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="64" column="13" lean-forward="true" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="79" column="17" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="92" selection-end-column="3" />
           <folding />
         </state>
       </provider>

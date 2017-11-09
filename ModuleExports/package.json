@@ -20,6 +20,7 @@
     "mongoose": "^4.13.0",
     "mysql": "^2.15.0",
     "path": "^0.12.7",
+    "semantic-ui": "^2.2.13",
     "serve-static": "^1.13.1"
   }
 }
