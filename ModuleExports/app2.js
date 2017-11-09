@@ -16,7 +16,7 @@ var user = require('./routes/user');
 
 var config = require('./config');
 
-
+var database_loader = require('./database/database_loader');
 
 var database;
 var UserSchema;
@@ -38,28 +38,6 @@ app.use(expressSession({
     resave: true,
     saveUninitialized: true
 }));
-
-
-function connectDB() {
-
-    mongoose.Promise = global.Promise;
-    mongoose.connect(config.db_url);
-    database = mongoose.connection;
-
-    database.on('open', function () {
-        console.log("Connected to database : " + databaseUrl);
-
-        createUserSchema(database);
-    });
-
-    database.on('disconnected', function () {
-        console.log("Database is disconnected.");
-    });
-
-    database.on('error', console.error.bind(console, 'mongoose connection error.'));
-
-    app.set('database', database);
-}
 
 function createUserSchema(database) {
     database.UserSchema = require('./database/user_schema').createSchema(mongoose);
@@ -92,5 +70,5 @@ app.use(errorHandler);
 
 var server = http.createServer(app).listen(app.get('port'), function () {
     console.log('Express Web Server : ' + app.get('port'));
-    connectDB();
+    database_loader.init(app, config);
 });
