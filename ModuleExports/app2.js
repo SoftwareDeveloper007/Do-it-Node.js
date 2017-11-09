@@ -32,14 +32,6 @@ app.use(expressSession({
     saveUninitialized: true
 }));
 
-function createUserSchema(database) {
-    database.UserSchema = require('./database/user_schema').createSchema(mongoose);
-
-    database.UserModel = mongoose.model('user3', database.UserSchema);
-
-    console.log('UserModel is defined.');
-}
-
 route_loader.init(app, express.Router());
 
 // 404 Error page

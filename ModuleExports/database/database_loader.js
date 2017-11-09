@@ -15,7 +15,7 @@ function connect(app, config) {
     database.db = mongoose.connection;
 
     database.db.on('open', function () {
-        console.log("Connected to database : " + databaseUrl);
+        console.log("Connected to database : " + config.db_url);
 
         createSchema(app, config);
     });
@@ -35,8 +35,8 @@ function createSchema(app, config) {
     for (var i = 0; i < config.db_schemas.length; i++) {
         var curItem = config.db_schemas[i];
 
-        var curSchema = required(curItem.file).createSchema(mongoose);
-        config.log('%s Schema is created using module.', curItem.file);
+        var curSchema = require(curItem.file).createSchema(mongoose);
+        console.log('%s Schema is created using module.', curItem.file);
 
         var curModel = mongoose.model(curItem.collection, curSchema);
         console.log('%s Model is defined using collection.', curItem.collection);

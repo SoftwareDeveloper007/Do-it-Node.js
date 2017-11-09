@@ -137,7 +137,7 @@ var authUser = function (db, id, password, callback) {
         console.log('Search result with id %s.');
 
         if(results.length > 0){
-            var user = new UserModel({id: id});
+            var user = new db.UserModel({id: id});
 
             var authenticated = user.authenticate(password, results[0]._doc.salt, results[0]._doc.hashed_password);
 
