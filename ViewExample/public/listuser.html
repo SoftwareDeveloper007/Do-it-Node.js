@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <title>list user</title>
+    <link href="semantic.min.css" rel="stylesheet">
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="semantic.js"></script>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            color: #000;
+            background-color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #cardbox {
+            width: 70%;
+        }
+
+        #iconImage{
+            display: inline;
+        }
+
+        #titleText{
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #777;
+        }
+
+        #contentsText{
+            color: #999;
+        }
+
+        #form1{
+            padding: 1em;
+        }
+
+        .row{
+            height:3em;
+        }
+
+        .col1 {
+            width:5em;
+        }
+
+        .inputbox{
+            width: 20em;
+        }
+
+        .buttonArea{
+            background-color: rgba(242, 248, 255, 255) !important;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <br>
+    <div class="ui raised segment">
+        <a class="ui blue ribbon label">User list</a>
+        <br><br>
+
+        <div class="ui blue fluid card">
+            <div class="content">
+                <div class="header">Girls Age</div>
+                <div class="meta">
+                    <span class="right floated time">20 year</span>
+                    <span class="category">Friend</span>
+                </div>
+                <div class="description">
+                    <br>
+                    <p>Girl Group's Singer.</p>
+                    <p>Friend</p>
+                </div>
+                <div class="bottomArea extra content">
+                    <div class="right floated author">
+                        <img class="ui avatar image" src="./images/woman.png">010-2000-2000
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui blue fluid card">
+            <div class="content">
+                <div class="header">Girls Day</div>
+                <div class="meta">
+                    <span class="right floated time">22 year</span>
+                    <span class="category">Friend</span>
+                </div>
+                <div class="description">
+                    <br>
+                    <p>Girl Group's Singer.</p>
+                    <p>Friend</p>
+                </div>
+                <div class="bottomArea extra content">
+                    <div class="right floated author">
+                        <img class="ui avatar image" src="./images/woman.png">010-2000-2000
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<form method="post" action="/process/listuser">
+    <table>
+        <tr class="row">
+            <td><label>Click the following button</label></td>
+        </tr>
+    </table>
+    <input type = "submit" value="submit" name="">
+</form>
+</body>
+</html>

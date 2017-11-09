@@ -1,0 +1,26 @@
+{
+  "name": "database_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "crypto": "^1.0.1",
+    "express": "^4.16.2",
+    "express-error-handler": "^1.1.0",
+    "express-session": "^1.15.6",
+    "http": "0.0.0",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.13.0",
+    "mysql": "^2.15.0",
+    "path": "^0.12.7",
+    "semantic-ui": "^2.2.13",
+    "serve-static": "^1.13.1"
+  }
+}
