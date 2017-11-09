@@ -1,8 +1,12 @@
+
+
 var login = function (req, res) {
     console.log('/process/login : Routing function is called');
     var paramId = req.body.id || req.query.id;
     var paramPassword = req.body.password || req.query.password;
     console.log("Request parameter : " + paramId + ', ' + paramPassword);
+
+    var database = req.app.get('database');
 
     if(database){
         authUser(database, paramId, paramPassword, function (err, docs) {
@@ -43,6 +47,8 @@ var adduser = function (req, res) {
 
     console.log('Request Parameter : ' + paramId + ', ' + paramPassword + ', ' + paramName);
 
+    var database = req.app.get('database');
+
     if (database){
         addUser(database, paramId, paramPassword, paramName, function (err, result) {
             if(err){
@@ -82,6 +88,7 @@ var adduser = function (req, res) {
 var listuser = function (req, res) {
     console.log('/process/listuser : Routing function is called.');
 
+    var database = req.app.get('database');
     if(database){
         UserModel.findAll(function (err, results) {
             if(err){
@@ -117,6 +124,55 @@ var listuser = function (req, res) {
         });
     }
 };
+
+var authUser = function (db, id, password, callback) {
+    console.log('authUser is called :' + id + ', ' + password);
+
+    db.UserModel.findById(id, function (err, results) {
+        if(err){
+            callback(err, null);
+            return;
+        }
+
+        console.log('Search result with id %s.');
+
+        if(results.length > 0){
+            var user = new UserModel({id: id});
+
+            var authenticated = user.authenticate(password, results[0]._doc.salt, results[0]._doc.hashed_password);
+
+            if(authenticated) {
+                console.log('Password is correct.');
+                callback(null, results);
+            }
+            else{
+                console.log('Password is incorrect.');
+                callback(null, null);
+            }
+        }
+        else{
+            console.log('No identified user.');
+            callback(null, null);
+        }
+    });
+};
+
+var addUser = function (db, id, password, name, callback) {
+    console.log('addUser is called :' + id + ', ' + password + ', ' + name);
+
+    var user = new db.UserModel({"id": id, "password": password, "name": name});
+    user.save(function (err) {
+        if(err){
+            call(err, null);
+            return;
+        }
+
+        console.log("User data is added.");
+        callback(null, user);
+
+    });
+};
+
 
 module.exports.login = login;
 module.exports.adduser = adduser;

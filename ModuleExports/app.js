@@ -12,9 +12,29 @@ var expressErrorHandler = require('express-error-handler');
 // mongoose Module
 var mongoose = require('mongoose');
 
+var user = require('./routes/user');
+
 var database;
 var UserSchema;
 var UserModel;
+
+
+
+
+var app = express();
+
+app.set('port', process.env.PORT || 3000);
+app.use('/public', static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(expressSession({
+    secret: 'my key',
+    resave: true,
+    saveUninitialized: true
+}));
+
 
 function connectDB() {
     var databaseUrl = 'mongodb://localhost:27017/local';
@@ -34,6 +54,8 @@ function connectDB() {
     });
 
     database.on('error', console.error.bind(console, 'mongoose connection error.'));
+
+    app.set('database', database);
 }
 
 function createUserSchema(database) {
@@ -44,79 +66,16 @@ function createUserSchema(database) {
     console.log('UserModel is defined.');
 }
 
-
-var app = express();
-
-app.set('port', process.env.PORT || 3000);
-app.use('/public', static(path.join(__dirname, 'public')));
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(expressSession({
-    secret: 'my key',
-    resave: true,
-    saveUninitialized: true
-}));
-
-
 var router = express.Router();
 
-router.route('/process/login').post();
+router.route('/process/login').post(user.login);
 
-router.route('/process/adduser').post();
+router.route('/process/adduser').post(user.adduser);
 
-router.route('/process/listuser').post();
+router.route('/process/listuser').post(user.listuser);
 
 app.use('/', router);
 
-var authUser = function (db, id, password, callback) {
-    console.log('authUser is called :' + id + ', ' + password);
-
-    UserModel.findById(id, function (err, results) {
-        if(err){
-            callback(err, null);
-            return;
-        }
-
-        console.log('Search result with id %s.');
-
-        if(results.length > 0){
-            var user = new UserModel({id: id});
-
-            var authenticated = user.authenticate(password, results[0]._doc.salt, results[0]._doc.hashed_password);
-
-            if(authenticated) {
-                console.log('Password is correct.');
-                callback(null, results);
-            }
-            else{
-                console.log('Password is incorrect.');
-                callback(null, null);
-            }
-        }
-        else{
-            console.log('No identified user.');
-            callback(null, null);
-        }
-    });
-};
-
-var addUser = function (db, id, password, name, callback) {
-    console.log('addUser is called :' + id + ', ' + password + ', ' + name);
-
-    var user = new UserModel({"id": id, "password": password, "name": name});
-    user.save(function (err) {
-        if(err){
-            call(err, null);
-            return;
-        }
-
-        console.log("User data is added.");
-        callback(null, user);
-
-    });
-};
 
 // 404 Error page
 var errorHandler = expressErrorHandler({
