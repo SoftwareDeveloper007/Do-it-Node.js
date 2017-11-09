@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+
 var database = {};
 
 database.init = function (app, config) {
