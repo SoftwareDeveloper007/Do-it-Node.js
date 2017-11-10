@@ -18,7 +18,10 @@ var route_loader = require('./routes/route_loader');
 
 var app = express();
 
-console.log('config.srever_port _> ' + config.server_port);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+console.log('config.server_port _> ' + config.server_port);
 app.set('port', config.server_port || 3000);
 
 app.use('/public', static(path.join(__dirname, 'public')));
